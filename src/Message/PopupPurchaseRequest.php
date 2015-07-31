@@ -19,9 +19,7 @@ class PopupPurchaseRequest extends AbstractRequest
 
         $data = array();
         $data['amount'] = $this->getAmountInteger();
-        //$data['currency'] = strtolower($this->getCurrency());
-        //$data['ip_address'] = $this->getClientIp();
-        $data['order_id'] = $this->getOrderId();
+        $data['order_id'] = $this->getTransactionId();
 
         return $data;
     }
@@ -30,6 +28,6 @@ class PopupPurchaseRequest extends AbstractRequest
     {
         $httpResponse = $this->sendRequest('/popup', $data);
 
-        return $this->response = new Response($this, $httpResponse->json());
+        return $this->response = new RedirectResponse($this, $httpResponse->json());
     }
 }

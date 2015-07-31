@@ -18,7 +18,7 @@ class Response extends AbstractResponse
 {
     public function isSuccessful()
     {
-        return !$this->isRedirect() && $this->data && $this->data['success'];
+        return $this->data['success'] === true;
     }
 
     public function getMessage()

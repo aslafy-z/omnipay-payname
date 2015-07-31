@@ -23,9 +23,20 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
+            'apiKey' => '',
             'secretKey' => '',
             'testMode' => false,
         );
+    }
+
+    public function getApiKey()
+    {
+        return $this->getParameter('apiKey');
+    }
+
+    public function setApiKey($value)
+    {
+        return $this->setParameter('apiKey', $value);
     }
 
     public function getSecretKey()
@@ -41,5 +52,10 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Payname\Message\PopupPurchaseRequest', $parameters);
+    }
+
+    public function fetchToken(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Payname\Message\FetchTokenRequest', $parameters);
     }
 }

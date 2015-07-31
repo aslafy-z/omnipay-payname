@@ -26,7 +26,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      *
      * @var string URL
      */
-    protected $endpoint = 'https://api.payname.fr/';
+    protected $endpoint = 'https://api.payname.fr';
 
     /**
      * Get secret key
@@ -39,7 +39,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getSecretKey()
     {
-        return $this->getTestMode() ? 'test' : $this->getParameter('secretKey');
+        return $this->getTestMode() ? 'L0geHFzBQqN0RSWHrm7XhAnbt6gPZEtl' : $this->getParameter('secretKey');
     }
 
     /**
@@ -90,8 +90,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         );
 
         $httpResponse = $this->httpClient->post($this->getEndpoint() . $action, null, $data)
-            ->setHeader('Authorization', 'Basic ' . base64_encode($this->getSecretKey() . ':'))
-                      ->setHeader;
+            ->setHeader('Authorization', $this->getSecretKey());
 
         return $httpResponse->send();
     }
