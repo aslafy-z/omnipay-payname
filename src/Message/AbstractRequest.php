@@ -39,7 +39,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getSecretKey()
     {
-        return $this->getTestMode() ? 'L0geHFzBQqN0RSWHrm7XhAnbt6gPZEtl' : $this->getParameter('secretKey');
+        return $this->getTestMode() ? '' : $this->getParameter('secretKey');
     }
 
     /**
